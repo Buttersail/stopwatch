@@ -1,6 +1,12 @@
+//Variables used to store the timer
 let seconds = 0
 let minutes = 0
 let hours = 0
+
+//Variables used to make the stopwatch in a better format
+let displaySeconds = 0
+let displayMinutes = 0
+let displayHours = 0
 
 let interval = null
 
@@ -20,7 +26,27 @@ function stopWatch() {
     }
   }
 
-  document.querySelector('#counter').innerHTML = hours + ':' + minutes + ':' + seconds
+  //For formatting the stopwatch better
+  if (seconds < 10) {
+    displaySeconds = '0' + seconds.toString()
+  } else {
+    displaySeconds = seconds
+  }
+
+  if (minutes < 10) {
+    displayMinutes = '0' + minutes.toString()
+  } else {
+    displayMinutes = minutes
+  }
+
+  if (hours < 10) {
+    displayHours = '0' + hours.toString()
+  } else {
+    displayHours = hours
+  }
+
+  //To change the value of the stopwatch from a static to 'dynamic' value
+  document.querySelector('#counter').innerHTML = displayHours + ':' + displayMinutes + ':' + displaySeconds
 }
 
 //Buttons
@@ -56,7 +82,7 @@ function stopwatchPause() {
   }
 }
 
-//Is for resetting the timer back to 0
+//Is for resetting the timer back to 00:00:00
 function stopwatchReset() {
   window.clearInterval(interval)
   seconds = 0
