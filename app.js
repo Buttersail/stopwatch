@@ -84,10 +84,13 @@ function stopwatchPause() {
 
 //Is for resetting the timer back to 00:00:00
 function stopwatchReset() {
-  window.clearInterval(interval)
-  seconds = 0
-  minutes = 0
-  hours = 0
+  if (stopwatchStatus === 'started' || stopwatchStatus === 'paused') {
+    window.clearInterval(interval)
+    seconds = 0
+    minutes = 0
+    hours = 0
 
-  document.querySelector('#counter').innerHTML = '00:00:00'
+    document.querySelector('#counter').innerHTML = '00:00:00'
+    stopwatchStatus = 'paused'
+  }
 }
